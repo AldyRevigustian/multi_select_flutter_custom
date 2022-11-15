@@ -225,63 +225,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: widget.backgroundColor,
-      title: widget.searchable == false
-          ? widget.title ?? const Text("Select")
-          : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _showSearch
-                    ? Expanded(
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10),
-                          child: TextField(
-                            style: widget.searchTextStyle,
-                            decoration: InputDecoration(
-                              hintStyle: widget.searchHintStyle,
-                              hintText: widget.searchHint ?? "Search",
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: widget.selectedColor ??
-                                      Theme.of(context).primaryColor,
-                                ),
-                              ),
-                            ),
-                            onChanged: (val) {
-                              List<MultiSelectItem<T>> filteredList = [];
-                              filteredList =
-                                  widget.updateSearchQuery(val, widget.items);
-                              setState(() {
-                                if (widget.separateSelectedItems) {
-                                  _items =
-                                      widget.separateSelected(filteredList);
-                                } else {
-                                  _items = filteredList;
-                                }
-                              });
-                            },
-                          ),
-                        ),
-                      )
-                    : widget.title ?? Text("Select"),
-                IconButton(
-                  icon: _showSearch
-                      ? widget.closeSearchIcon ?? Icon(Icons.close)
-                      : widget.searchIcon ?? Icon(Icons.search),
-                  onPressed: () {
-                    setState(() {
-                      _showSearch = !_showSearch;
-                      if (!_showSearch) {
-                        if (widget.separateSelectedItems) {
-                          _items = widget.separateSelected(widget.items);
-                        } else {
-                          _items = widget.items;
-                        }
-                      }
-                    });
-                  },
-                ),
-              ],
-            ),
+      title: widget.title ?? const Text("Select"),
       contentPadding:
           widget.listType == null || widget.listType == MultiSelectListType.LIST
               ? EdgeInsets.only(top: 5.0)
@@ -291,11 +235,42 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
         width: widget.width ?? MediaQuery.of(context).size.width * 0.73,
         child: widget.listType == null ||
                 widget.listType == MultiSelectListType.LIST
-            ? ListView.builder(
-                itemCount: _items.length,
-                itemBuilder: (context, index) {
-                  return _buildListItem(_items[index]);
-                },
+            ? Column(
+                children: [
+                  Expanded(
+                    child: Container(
+                      // padding: EdgeInsets.only(left: 10),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(10),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                    color: Color(0xFF435EBE).withOpacity(1))),
+                            hintText: 'Search',
+                            prefixIcon: Icon(Icons.search)),
+                        onChanged: (val) {
+                          List<MultiSelectItem<T>> filteredList = [];
+                          filteredList =
+                              widget.updateSearchQuery(val, widget.items);
+                          setState(() {
+                            if (widget.separateSelectedItems) {
+                              _items = widget.separateSelected(filteredList);
+                            } else {
+                              _items = filteredList;
+                            }
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  ListView.builder(
+                    itemCount: _items.length,
+                    itemBuilder: (context, index) {
+                      return _buildListItem(_items[index]);
+                    },
+                  ),
+                ],
               )
             : SingleChildScrollView(
                 child: Wrap(
