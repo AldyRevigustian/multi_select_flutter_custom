@@ -139,15 +139,13 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
         unselectedWidgetColor: widget.unselectedColor ?? Colors.black54,
       ),
       child: CheckboxListTile(
-        contentPadding: EdgeInsets.all(0),
         checkColor: widget.checkColor,
         value: item.selected,
         activeColor: widget.colorator != null
             ? widget.colorator!(item.value) ?? widget.selectedColor
             : widget.selectedColor,
         title: Text(
-          // item.label,
-          'KAOKAOKAO',
+          item.label,
           style: item.selected
               ? widget.selectedItemsTextStyle
               : widget.itemsTextStyle,
@@ -218,8 +216,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      // backgroundColor: widget.backgroundColor,
-      backgroundColor: Colors.red,
+      backgroundColor: widget.backgroundColor,
       title: widget.searchable == false
           ? widget.title ?? const Text("Select")
           : Row(
