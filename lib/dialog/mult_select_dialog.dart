@@ -146,7 +146,8 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
             ? widget.colorator!(item.value) ?? widget.selectedColor
             : widget.selectedColor,
         title: Text(
-          item.label,
+          // item.label,
+          'KAOKAOKAO',
           style: item.selected
               ? widget.selectedItemsTextStyle
               : widget.itemsTextStyle,
