@@ -250,7 +250,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                           hintStyle: TextStyle(fontSize: 14),
                           prefixIcon: Icon(
                             Icons.search,
-                            size: 25,
+                            size: 22,
                           )),
                       onChanged: (val) {
                         List<MultiSelectItem<T>> filteredList = [];
