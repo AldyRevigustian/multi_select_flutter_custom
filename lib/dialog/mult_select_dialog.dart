@@ -276,7 +276,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
             ),
       contentPadding:
           widget.listType == null || widget.listType == MultiSelectListType.LIST
-              ? EdgeInsets.only(top: 12.0)
+              ? EdgeInsets.only(top: 5.0)
               : EdgeInsets.all(20),
       content: Container(
         height: widget.height,
