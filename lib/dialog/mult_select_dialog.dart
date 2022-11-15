@@ -247,7 +247,11 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                               borderSide: BorderSide(
                                   color: Color(0xFF435EBE).withOpacity(1))),
                           hintText: 'Search',
-                          prefixIcon: Icon(Icons.search)),
+                          hintStyle: TextStyle(fontSize: 14),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            size: 25,
+                          )),
                       onChanged: (val) {
                         List<MultiSelectItem<T>> filteredList = [];
                         filteredList =
