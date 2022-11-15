@@ -262,11 +262,13 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                       },
                     ),
                   ),
-                  ListView.builder(
-                    itemCount: _items.length,
-                    itemBuilder: (context, index) {
-                      return _buildListItem(_items[index]);
-                    },
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _items.length,
+                      itemBuilder: (context, index) {
+                        return _buildListItem(_items[index]);
+                      },
+                    ),
                   ),
                 ],
               )
