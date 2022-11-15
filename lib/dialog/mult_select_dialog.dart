@@ -140,11 +140,11 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
       ),
       child: ListTileTheme(
         dense: true,
-        horizontalTitleGap: 0,
-        contentPadding: EdgeInsets.zero,
+        // horizontalTitleGap: 0,
+        // contentPadding: EdgeInsets.zero,
         child: CheckboxListTile(
           dense: true,
-          contentPadding: EdgeInsets.zero,
+          // contentPadding: EdgeInsets.zero,
           isThreeLine: false,
           checkColor: widget.checkColor,
           value: item.selected,
