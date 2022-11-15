@@ -138,38 +138,41 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
       data: ThemeData(
         unselectedWidgetColor: widget.unselectedColor ?? Colors.black54,
       ),
-      child: CheckboxListTile(
-        contentPadding: EdgeInsets.all(5),
-        checkColor: widget.checkColor,
-        value: item.selected,
-        activeColor: widget.colorator != null
-            ? widget.colorator!(item.value) ?? widget.selectedColor
-            : widget.selectedColor,
-        title: Text(
-          item.label,
-          style: item.selected
-              ? widget.selectedItemsTextStyle
-              : widget.itemsTextStyle,
-        ),
-        controlAffinity: ListTileControlAffinity.leading,
-        onChanged: (checked) {
-          setState(() {
-            _selectedValues = widget.onItemCheckedChange(
-                _selectedValues, item.value, checked!);
+      child: ListTileTheme(
+        contentPadding: EdgeInsets.zero,
+        child: CheckboxListTile(
+          isThreeLine: false,
+          checkColor: widget.checkColor,
+          value: item.selected,
+          activeColor: widget.colorator != null
+              ? widget.colorator!(item.value) ?? widget.selectedColor
+              : widget.selectedColor,
+          title: Text(
+            item.label,
+            style: item.selected
+                ? widget.selectedItemsTextStyle
+                : widget.itemsTextStyle,
+          ),
+          controlAffinity: ListTileControlAffinity.leading,
+          onChanged: (checked) {
+            setState(() {
+              _selectedValues = widget.onItemCheckedChange(
+                  _selectedValues, item.value, checked!);
 
-            if (checked) {
-              item.selected = true;
-            } else {
-              item.selected = false;
+              if (checked) {
+                item.selected = true;
+              } else {
+                item.selected = false;
+              }
+              if (widget.separateSelectedItems) {
+                _items = widget.separateSelected(_items);
+              }
+            });
+            if (widget.onSelectionChanged != null) {
+              widget.onSelectionChanged!(_selectedValues);
             }
-            if (widget.separateSelectedItems) {
-              _items = widget.separateSelected(_items);
-            }
-          });
-          if (widget.onSelectionChanged != null) {
-            widget.onSelectionChanged!(_selectedValues);
-          }
-        },
+          },
+        ),
       ),
     );
   }
