@@ -238,7 +238,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
             ? Column(
                 children: [
                   Container(
-                    // padding: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     child: TextField(
                       decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
@@ -262,13 +262,11 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                       },
                     ),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: _items.length,
-                      itemBuilder: (context, index) {
-                        return _buildListItem(_items[index]);
-                      },
-                    ),
+                  ListView.builder(
+                    itemCount: _items.length,
+                    itemBuilder: (context, index) {
+                      return _buildListItem(_items[index]);
+                    },
                   ),
                 ],
               )
