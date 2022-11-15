@@ -237,38 +237,38 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
                 widget.listType == MultiSelectListType.LIST
             ? Column(
                 children: [
-                  Expanded(
-                    child: Container(
-                      // padding: EdgeInsets.only(left: 10),
-                      child: TextField(
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide(
-                                    color: Color(0xFF435EBE).withOpacity(1))),
-                            hintText: 'Search',
-                            prefixIcon: Icon(Icons.search)),
-                        onChanged: (val) {
-                          List<MultiSelectItem<T>> filteredList = [];
-                          filteredList =
-                              widget.updateSearchQuery(val, widget.items);
-                          setState(() {
-                            if (widget.separateSelectedItems) {
-                              _items = widget.separateSelected(filteredList);
-                            } else {
-                              _items = filteredList;
-                            }
-                          });
-                        },
-                      ),
+                  Container(
+                    // padding: EdgeInsets.only(left: 10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(10),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide(
+                                  color: Color(0xFF435EBE).withOpacity(1))),
+                          hintText: 'Search',
+                          prefixIcon: Icon(Icons.search)),
+                      onChanged: (val) {
+                        List<MultiSelectItem<T>> filteredList = [];
+                        filteredList =
+                            widget.updateSearchQuery(val, widget.items);
+                        setState(() {
+                          if (widget.separateSelectedItems) {
+                            _items = widget.separateSelected(filteredList);
+                          } else {
+                            _items = filteredList;
+                          }
+                        });
+                      },
                     ),
                   ),
-                  ListView.builder(
-                    itemCount: _items.length,
-                    itemBuilder: (context, index) {
-                      return _buildListItem(_items[index]);
-                    },
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _items.length,
+                      itemBuilder: (context, index) {
+                        return _buildListItem(_items[index]);
+                      },
+                    ),
                   ),
                 ],
               )
