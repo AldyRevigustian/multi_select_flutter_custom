@@ -139,7 +139,6 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
         unselectedWidgetColor: widget.unselectedColor ?? Colors.black54,
       ),
       child: CheckboxListTile(
-        contentPadding: EdgeInsets.symmetric(vertical: 0),
         checkColor: widget.checkColor,
         value: item.selected,
         activeColor: widget.colorator != null
@@ -277,7 +276,7 @@ class _MultiSelectDialogState<T> extends State<MultiSelectDialog<T>> {
             ),
       contentPadding:
           widget.listType == null || widget.listType == MultiSelectListType.LIST
-              ? EdgeInsets.only(top: 5.0)
+              ? EdgeInsets.only(top: 12.0)
               : EdgeInsets.all(20),
       content: Container(
         height: widget.height,
